@@ -1,0 +1,21 @@
+{
+   "name": "StrainingU",
+   "version": "1.0",
+   "manifest_version": 2,
+   "permissions": [
+	"tabs", "http://*/*"
+   ]
+
+   "description": "first extensions",
+   "background": {
+	"scripts": ["background.js"]
+   },
+
+   "browser_action": {
+      "default_icon": "icon19.png",
+      "default_title": "StrainingU",
+      "default_popup": "popup.html"
+   }
+}
+
+

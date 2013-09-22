@@ -1,1 +1,1 @@
-chrome.browserAction.setBadgeText({"text":"100"})
+chrome.browserAction.setBadgeText({"text":"SU"})
