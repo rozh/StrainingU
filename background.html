@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+
+// *************************************************
+// クリップボードへコピー
+// *************************************************
+function clip_Copy(str) {
+    document.getElementById('text').value = str;
+    document.getElementById('text').select();
+    document.getElementById('text').focus();
+    document.execCommand("Copy");
+}
+
+// *********************************************************
+// 右クリックメニューの処理
+// *********************************************************
+function active_Action(info, tab) {
+
+    var str = "";
+
+    if ( info.mediaType == 'image' && typeof( info.srcUrl ) !== 'undefined' ) {
+	str = '<img src="' + info.srcUrl + '"';
+	str += ' style="border: solid 0px #000000" />';
+	clip_Copy( str );
+	chrome.tabs.executeScript(
+	    null,
+	    { code: "alert('"+str+"');" },
+	    function() {
+	    }
+	);
+    }
+
+}
+
+// *********************************************************
+// 初期処理
+// *********************************************************
+try {
+    chrome.contextMenus.removeAll();
+}catch(e) {}
+
+// 右クリックメニューを作成
+chrome.contextMenus.create(
+    {
+	"title": "画像HTML取得",
+	"contexts":["image"],
+	"onclick": active_Action
+    }
+);
+</script>
+</head>
+<body>
+<textarea name="text" id="text"></textarea> 
+</body>
+</html>
